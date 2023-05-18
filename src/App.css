@@ -1,0 +1,15 @@
+.App {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  height: 1080px;
+  width: 1920px;
+  background-image: url(".\assets\image.jpg");
+  object-fit: cover;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  list-style-type: none;
+}
