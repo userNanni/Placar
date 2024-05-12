@@ -1,0 +1,289 @@
+:root {
+  --normal-space: 10%;
+  --diminuted-space: 7.5vw;
+  --small-space: 5vw;
+  --minor-space: 3.75vw;
+  --text: 1rem;
+
+  --dark-color: #191611;
+  --light-color: #f6efe5;
+  --highlight-color: #867028;
+
+  font-family: "Grenze Gotisch", serif;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--dark-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--light-color);
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+.header {
+  position: fixed;
+  z-index: 1800;
+
+  .textAndLogo {
+    margin-left: var(--normal-space);
+    margin-right: var(--normal-space);
+
+    display: flex;
+
+    width: 100%;
+
+    .logoWrap {
+      width: fit-content;
+      .logo {
+        z-index: 2500;
+
+        width: var(--diminuted-space);
+
+        margin-top: 20px;
+
+        transition: 1s;
+
+        @media (width <= 600px) {
+          display: none;
+        }
+      }
+      .logo:hover {
+        width: calc(1.05 * var(--diminuted-space));
+      }
+    }
+
+    .titleBackground {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -5;
+      width: 100%;
+      height: fit-content;
+      padding-left: var(--diminuted-space);
+
+      @media (width <= 600px) {
+        padding-left: 0;
+      }
+
+      background-color: var(--dark-color);
+      box-shadow: 0 0 15px 2px black;
+
+      .titleLong {
+        @media (width <= 850px) {
+          display: none;
+        }
+        width: 100%;
+        height: var(--diminuted-space);
+
+        text-align: center;
+        align-content: center;
+      }
+      .titleShort {
+        @media (width > 850px) {
+          display: none;
+        }
+
+        width: 100%;
+        height: var(--diminuted-space);
+
+        text-align: center;
+        align-content: center;
+      }
+    }
+  }
+}
+
+.placares {
+  display: flex;
+
+  @media (width <= 850px) {
+  }
+
+  min-height: 40vw;
+  height: 100%;
+
+  @media (orientation: portrait) {
+    min-height: 60vh;
+  }
+
+  width: 100%;
+
+  color: var(--dark-color);
+
+  .placarIntermediario {
+    width: 50%;
+
+    background-image: url(https://rothbardbrasil.com/wp-content/uploads/2023/03/guerra-1.jpg);
+    background-position: center;
+    background-size: cover;
+
+    align-content: end;
+    text-align: center;
+    padding: 2rem;
+
+    font-family: "Grenze Gotisch";
+    font-size: 3vw;
+    font-weight: 700;
+
+    transition: 1s;
+  }
+  .placarIntermediario:hover {
+    cursor: pointer;
+    z-index: 100;
+    color: var(--highlight-color);
+    box-shadow: 0 0 15px 2px black;
+    width: 120%;
+  }
+  .placarFinal {
+    width: 50%;
+
+    background-image: url(https://planehistoria.com/wp-content/uploads/2022/09/Captured_Focke-Wulf_Fw_190_in_flight_near_NAS_Patuxent_River_in_1944-scaled-1.jpg);
+    background-position: center;
+    background-size: cover;
+
+    align-content: end;
+    text-align: center;
+    padding: 2rem;
+
+    font-family: "Grenze Gotisch";
+    font-size: 3vw;
+    font-weight: 700;
+
+    transition: 1s;
+  }
+  .placarFinal:hover {
+    cursor: pointer;
+    z-index: 100;
+    color: var(--highlight-color);
+    box-shadow: 0 0 15px 2px black;
+    width: 120%;
+  }
+}
+
+.aboutBackground {
+  display: block;
+  z-index: -5;
+  width: 100%;
+  height: fit-content;
+  background-color: var(--dark-color);
+  box-shadow: 0 0 15px 2px black;
+  .titleAbout {
+    width: 100%;
+    height: var(--small-space);
+    text-align: center;
+    align-content: center;
+    z-index: 0;
+  }
+}
+
+.about {
+  background-color: var(--light-color);
+  display: block;
+
+  padding: var(--minor-space);
+  padding-left: var(--normal-space);
+  padding-right: var(--normal-space);
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  @media (width <= 1200px) {
+    grid-template-columns: 1fr;
+  }
+
+  color: #191611;
+  font-size: var(--text);
+  .aboutImage {
+    width: 100%;
+    align-self: center;
+  }
+  .textAbout {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    justify-content: space-between;
+    height: 100%;
+
+    p {
+      padding: 0.5rem;
+      padding-left: 2rem;
+      height: 1fr;
+    }
+
+    .youtubeBtn {
+      display: flex;
+      align-self: flex-end;
+
+      @media (width <= 1200px) {
+        align-self: center;
+      }
+
+      align-content: center;
+
+      width: fit-content;
+      height: fit-content;
+
+      margin: 1vw;
+      padding: 1rem;
+      border-radius: 1rem;
+
+      background-color: var(--dark-color);
+
+      p {
+        color: var(--light-color);
+        font-size: medium;
+        text-align: center;
+        align-content: center;
+      }
+
+      .playbtn {
+        width: 4rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+footer {
+  background-color: var(--dark-color);
+
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem var(--small-space);
+
+  align-items: center;
+
+  @media (width <= 850px) {
+    row-gap: 2rem;
+
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+    align-content: center;
+  }
+
+  .container {
+    width: 180px;
+    display: flex;
+    gap: 30px;
+    justify-content: end;
+    @media (width <= 850px) {
+      justify-content: center;
+    }
+  }
+
+  .logo {
+    width: var(--diminuted-space);
+    min-width: 60px;
+  }
+}

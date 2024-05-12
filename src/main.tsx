@@ -3,10 +3,11 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-import { ChakraProvider} from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import Home from "./routes/Home.tsx";
 import PlacarFinal from "./routes/PlacarFinal.tsx";
 import PlacarIntermediario from "./routes/PlacarIntermediario.tsx";
 import ErrorPage from "./routes/ErrorPage.tsx";
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/Home",
+        element: <Home />,
+      },
       {
         path: "/PlacarIntermediario",
         element: <PlacarIntermediario />,

@@ -1,11 +1,12 @@
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 
-const config: ThemeConfig = {
+const theme = extendTheme({
   initialColorMode: "dark",
   useSystemColorMode: false,
-};
-
-
-const theme = extendTheme({ config });
+  fonts: {
+    heading: `'Grenze Gotisch', serif`,
+    body: `'old-standard-tt', serif`,
+  },
+});
 
 export default theme;

@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Heading } from "@chakra-ui/react";
 import CardIntermediario from "../components/cardIntermediario.tsx";
 import { AnimatePresence, Reorder, motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -85,8 +85,18 @@ function PlacarIntermediario() {
   };
 
   return (
-    <>
+    <div className="Placar">
       <AnimatePresence>
+        <Heading
+          fontSize={60}
+          background="linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);"
+          backgroundClip="text"
+          textShadow="2px 2px 0px white, 2px 2px 10px black, #FC0 1px 0 10px"
+          userSelect="none"
+          margin={10}
+        >
+          X Olimpíada de História Militar Aeronáutica
+        </Heading>
         <Reorder.Group
           values={participantes}
           onReorder={setParticipantes}
@@ -112,7 +122,7 @@ function PlacarIntermediario() {
           </SimpleGrid>
         </Reorder.Group>
       </AnimatePresence>
-    </>
+    </div>
   );
 }
 
