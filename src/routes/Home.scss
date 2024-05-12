@@ -86,7 +86,8 @@
           display: none;
         }
         width: 100%;
-        height: var(--diminuted-space);
+        min-height: var(--diminuted-space);
+        height: fit-content;
 
         text-align: center;
         align-content: center;
@@ -97,7 +98,8 @@
         }
 
         width: 100%;
-        height: var(--diminuted-space);
+        min-height: var(--diminuted-space);
+        height: fit-content;
 
         text-align: center;
         align-content: center;
@@ -183,7 +185,8 @@
   .titleAbout {
     color: white;
     width: 100%;
-    height: var(--small-space);
+    min-height: var(--small-space);
+    height: fit-content;
     text-align: center;
     align-content: center;
     z-index: 0;
