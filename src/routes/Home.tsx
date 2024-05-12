@@ -10,7 +10,7 @@ function Home() {
           <a className="logoWrap" href="/home">
             <img
               className="logo"
-              src="src\assets\simbolo OHMA.png"
+              src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/simbolo%20OHMA.png?raw=true"
               alt="Simbolo OHMA"
             />
           </a>
@@ -41,7 +41,7 @@ function Home() {
       <section className="about">
         <Image
           className="aboutImage"
-          src="src\assets\image.jpg"
+          src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/image.jpg?raw=true"
           width={540}
         ></Image>
         <div className="textAbout">
@@ -54,7 +54,11 @@ function Home() {
             mattis.
           </p>
           <a href="https://www.youtube.com/@AFAMilitar" className="youtubeBtn">
-            <img className="playbtn" src="src\assets/play.svg" alt="" />
+            <img
+              className="playbtn"
+              src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/play.svg?raw=true"
+              alt=""
+            />
             <p>Assista ao Vivo</p>
           </a>
         </div>
@@ -63,13 +67,25 @@ function Home() {
         <div className="container">
           <Heading size="2xl">X OHMA</Heading>
         </div>
-        <img className="logo" src="src\assets\simbolo OHMA.png" alt="" />
+        <img
+          className="logo"
+          src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/simbolo%20OHMA.png?raw=true"
+          alt=""
+        />
         <div className="container">
           <a href="">
-            <img src="src\assets\youtube.png" width={60} alt="" />
+            <img
+              src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/youtube.png?raw=true"
+              width={60}
+              alt=""
+            />
           </a>
           <a href="">
-            <img src="src\assets\instagram.png" width={60} alt="" />
+            <img
+              src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/instagram.png?raw=true"
+              width={60}
+              alt=""
+            />
           </a>
         </div>
       </footer>
