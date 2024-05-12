@@ -137,8 +137,9 @@
     padding: 2rem;
 
     font-family: "Grenze Gotisch";
-    font-size: 3vw;
+    font-size: calc(1.5rem + 2vw);
     font-weight: 700;
+    text-shadow: 0 0 5px #0006;
 
     transition: 1s;
   }
@@ -161,8 +162,9 @@
     padding: 2rem;
 
     font-family: "Grenze Gotisch";
-    font-size: 3vw;
+    font-size: calc(1.5rem + 2vw);
     font-weight: 700;
+    text-shadow: 0 0 5px #0006;
 
     transition: 1s;
   }
