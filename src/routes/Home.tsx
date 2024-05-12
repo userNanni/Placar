@@ -10,7 +10,7 @@ function Home() {
           <a className="logoWrap" href="/home">
             <img
               className="logo"
-              src="public\simbolo OHMA.png"
+              src="src\assets\simbolo OHMA.png"
               alt="Simbolo OHMA"
             />
           </a>
@@ -54,11 +54,7 @@ function Home() {
             mattis.
           </p>
           <a href="https://www.youtube.com/@AFAMilitar" className="youtubeBtn">
-            <img
-              className="playbtn"
-              src="https://github.com/userNanni/Placar/blob/main/public/play.svg"
-              alt=""
-            />
+            <img className="playbtn" src="src\assets/play.svg" alt="" />
             <p>Assista ao Vivo</p>
           </a>
         </div>
@@ -67,13 +63,13 @@ function Home() {
         <div className="container">
           <Heading size="2xl">X OHMA</Heading>
         </div>
-        <img className="logo" src="%PUBLIC%\simbolo OHMA.png" alt="" />
+        <img className="logo" src="src\assets\simbolo OHMA.png" alt="" />
         <div className="container">
           <a href="">
-            <img src="public\youtube.png" width={60} alt="" />
+            <img src="src\assets\youtube.png" width={60} alt="" />
           </a>
           <a href="">
-            <img src="public\instagram.png" width={60} alt="" />
+            <img src="src\assets\instagram.png" width={60} alt="" />
           </a>
         </div>
       </footer>

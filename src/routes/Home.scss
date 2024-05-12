@@ -43,6 +43,8 @@
 
     width: 100%;
 
+    color: white;
+
     .logoWrap {
       width: fit-content;
       .logo {
@@ -255,6 +257,8 @@
 }
 
 footer {
+  color: white;
+
   background-color: var(--dark-color);
 
   display: flex;
