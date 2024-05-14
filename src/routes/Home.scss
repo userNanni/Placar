@@ -263,6 +263,12 @@
         margin-right: 1rem;
       }
     }
+    .youtubeBtn:hover {
+      box-shadow: 0 0 15px 2px black;
+      p {
+        color: var(--highlight-color);
+      }
+    }
   }
 }
 
