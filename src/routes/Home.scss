@@ -7,7 +7,7 @@
 
   --dark-color: #191611;
   --light-color: #f6efe5;
-  --highlight-color: #867028;
+  --highlight-color: #ddc060;
 
   font-family: "Grenze Gotisch", serif;
 }
@@ -123,7 +123,7 @@
 
   width: 100%;
 
-  color: var(--dark-color);
+  color: white;
 
   .placarIntermediario {
     width: 50%;
@@ -139,7 +139,7 @@
     font-family: "Grenze Gotisch";
     font-size: calc(1.5rem + 2vw);
     font-weight: 700;
-    text-shadow: 0 0 5px #0006;
+    text-shadow: 0 0 10px #0009;
 
     transition: 1s;
   }
@@ -164,7 +164,7 @@
     font-family: "Grenze Gotisch";
     font-size: calc(1.5rem + 2vw);
     font-weight: 700;
-    text-shadow: 0 0 5px #0006;
+    text-shadow: 0 0 10px #0009;
 
     transition: 1s;
   }
@@ -224,6 +224,8 @@
 
     p {
       padding: 0.5rem;
+      font-size: calc(1rem + 0.5vw);
+
       @media (width > 1200px) {
         padding-left: 2rem;
       }
@@ -251,7 +253,7 @@
 
       p {
         color: var(--light-color);
-        font-size: medium;
+        font-size: calc(1.5rem + 0.5vw);
         text-align: center;
         align-content: center;
       }
