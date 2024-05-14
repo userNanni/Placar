@@ -41,17 +41,18 @@ function Home() {
       <section className="about">
         <Image
           className="aboutImage"
-          src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/image.jpg?raw=true"
+          src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/banner-ohma-horizontal.jpeg?raw=true"
           width={540}
         ></Image>
         <div className="textAbout">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            magna enim, commodo a dolor et, accumsan eleifend velit. Donec
-            lectus eros, venenatis quis elit a, malesuada placerat tortor. Duis
-            sit amet viverra sapien. Maecenas scelerisque turpis ut quam
-            facilisis, id tempus nisi lobortis. Praesent semper nec nibh non
-            mattis.
+            Nos dias 15 e 16 de maio de 2024, a Academia da Força Aérea (AFA)
+            sediará a X Olimpíada de História Militar e Aeronáutica. Mais do que
+            uma competição, a Olimpíada visa estimular o estudo e a pesquisa
+            nessas áreas, reconhecendo sua importância na formação de futuros
+            oficiais da Força Aérea Brasileira. O evento conta com a
+            participação de equipes de outras escolas militares, promovendo o
+            intercâmbio e a interoperabilidade entre as instituições.
           </p>
           <a href="https://www.youtube.com/@AFAMilitar" className="youtubeBtn">
             <img
