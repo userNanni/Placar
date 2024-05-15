@@ -25,10 +25,13 @@ function Home() {
       </Center>
       <>
         <section className="placares">
-          <a className="placarIntermediario" href="/PlacarIntermediario">
+          <a
+            className="placarIntermediario"
+            href="/PlacarIntermediario-Projecao"
+          >
             Placar 1º Dia
           </a>
-          <a className="placarFinal" href="/PlacarFinal">
+          <a className="placarFinal" href="/PlacarFinal-Projecao">
             Placar 2º Dia
           </a>
         </section>
