@@ -3,7 +3,6 @@ import CardFinal from "../components/cardFinal.tsx";
 import { AnimatePresence, Reorder, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-
 function PlacarFinal() {
   const [participantes, setParticipantes] = useState([
     {
@@ -48,7 +47,7 @@ function PlacarFinal() {
 
   const fetchData = async () => {
     const apiResponse = await fetch(
-      "https://simplyheron.fly.dev/api/collections/participantes/records?sort=-score"
+      "https://simplyheron.fly.dev/api/collections/participantes/records?perPage=3"
     );
     const data = await apiResponse.json();
     console.log(data.items);

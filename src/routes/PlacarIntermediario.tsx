@@ -77,7 +77,7 @@ function PlacarIntermediario() {
 
   const fetchData = async () => {
     const apiResponse = await fetch(
-      "https://simplyheron.fly.dev/api/collections/participantes/records?sort=-score"
+      "https://simplyheron.fly.dev/api/collections/participantes/records?perPage=6"
     );
     const data = await apiResponse.json();
     setParticipantes(data.items);
