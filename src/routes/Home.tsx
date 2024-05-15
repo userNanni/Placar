@@ -55,7 +55,7 @@ function Home() {
             intercâmbio e a interoperabilidade entre as instituições.
           </p>
           <a
-            href="https://youtube.com/live/7aG0eF9GX3o?feature=share"
+            href="https://youtube.com/live/phR6a_cFCz0?feature=share"
             className="youtubeBtn"
           >
             <img
