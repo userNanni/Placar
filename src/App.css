@@ -2,7 +2,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  height: 100%;
+  height: 100vh;
   width: 100vw;
   background-image: url("https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/image.jpg?raw=true");
   object-fit: cover;
