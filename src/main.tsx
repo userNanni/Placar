@@ -8,10 +8,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./routes/Home.tsx";
-import PlacarFinal from "./routes/PlacarFinal.tsx";
-import PlacarIntermediario from "./routes/PlacarIntermediario.tsx";
 import ErrorPage from "./routes/ErrorPage.tsx";
 import theme from "./theme.tsx";
+import PlacarIntermediarioProjecao from "./routes/PlacarIntermediario-projecao.tsx";
+import PlacarFinalProjecao from "./routes/PlacarFinal-projecao.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,12 +24,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/PlacarIntermediario",
-        element: <PlacarIntermediario />,
+        path: "/PlacarIntermediario-Projecao",
+        element: <PlacarIntermediarioProjecao />,
       },
       {
-        path: "/PlacarFinal",
-        element: <PlacarFinal />,
+        path: "/PlacarFinal-Projecao",
+        element: <PlacarFinalProjecao />,
       },
     ],
   },

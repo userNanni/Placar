@@ -4,7 +4,7 @@
     "forceConsistentCasingInFileNames": true,
     "composite": true,
     "skipLibCheck": true,
-    "module": "ESNext",
+    "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true
   },

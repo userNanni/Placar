@@ -3,7 +3,7 @@ import CardIntermediario from "../components/cardIntermediario.tsx";
 import { AnimatePresence, Reorder, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-function PlacarIntermediario() {
+function PlacarIntermediarioProjecao() {
   const [participantes, setParticipantes] = useState([
     {
       collectionId: "ey60rk7y1qk2tro",
@@ -84,7 +84,7 @@ function PlacarIntermediario() {
   };
 
   return (
-    <div className="Placar">
+    <div className="PlacarProjecao">
       <AnimatePresence>
         <Heading
           fontSize={60}
@@ -125,4 +125,4 @@ function PlacarIntermediario() {
   );
 }
 
-export default PlacarIntermediario;
+export default PlacarIntermediarioProjecao;

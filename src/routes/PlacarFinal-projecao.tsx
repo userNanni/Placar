@@ -3,7 +3,7 @@ import CardFinal from "../components/cardFinal.tsx";
 import { AnimatePresence, Reorder, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-function PlacarFinal() {
+function PlacarFinalProjecao() {
   const [participantes, setParticipantes] = useState([
     {
       collectionId: "58cs73cdsxsyov3",
@@ -55,7 +55,7 @@ function PlacarFinal() {
   };
 
   return (
-    <div className="Placar">
+    <div className="PlacarProjecao">
       <AnimatePresence>
         <Heading
           fontSize={60}
@@ -96,4 +96,4 @@ function PlacarFinal() {
   );
 }
 
-export default PlacarFinal;
+export default PlacarFinalProjecao;
