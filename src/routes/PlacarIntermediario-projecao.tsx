@@ -71,7 +71,7 @@ function PlacarIntermediarioProjecao() {
     const interval = setInterval(() => {
       fetchData();
       console.log("updated");
-    }, 5000);
+    }, 1000);
     return () => clearInterval(interval);
   }, [participantes]);
 
