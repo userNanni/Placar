@@ -54,7 +54,10 @@ function Home() {
             participação de equipes de outras escolas militares, promovendo o
             intercâmbio e a interoperabilidade entre as instituições.
           </p>
-          <a href="https://www.youtube.com/@AFAMilitar" className="youtubeBtn">
+          <a
+            href="https://youtube.com/live/7aG0eF9GX3o?feature=share"
+            className="youtubeBtn"
+          >
             <img
               className="playbtn"
               src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/play.svg?raw=true"

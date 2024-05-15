@@ -80,7 +80,6 @@ function PlacarIntermediario() {
       "https://simplyheron.fly.dev/api/collections/participantes/records?sort=-score"
     );
     const data = await apiResponse.json();
-    console.log(data.items);
     setParticipantes(data.items);
   };
 
