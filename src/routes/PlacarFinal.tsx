@@ -47,7 +47,7 @@ function PlacarFinal() {
 
   const fetchData = async () => {
     const apiResponse = await fetch(
-      "https://simplyheron.fly.dev/api/collections/participantes/records?perPage=3"
+      "https://simplyheron.fly.dev/api/collections/participantes/records?sort=-score&&perPage=3"
     );
     const data = await apiResponse.json();
     console.log(data.items);
