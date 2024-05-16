@@ -38,7 +38,7 @@ function cardTotal(props: any) {
         height="20vw"
         src={props.ImageSrc}
         alt=""
-      />
+      />  
       <CardHeader fontWeight={700}>{props.Name}</CardHeader>
     </Card>
   );

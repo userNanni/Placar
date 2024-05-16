@@ -16,6 +16,8 @@
   width: 100%;
   display: block;
   padding: 10vw 5vw 5vw 5vw;
+
+  font-size: calc(1vw + 2rem);
   @media (orientation: portrait) {
     padding: 8vh 5vw 5vw 5vw;
   }
