@@ -1,3 +1,7 @@
+:root {
+  width: 100%;
+  display: block;
+}
 .PlacarProjecao {
   margin: 0 auto;
   padding: 2rem;

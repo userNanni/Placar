@@ -1,0 +1,23 @@
+:root {
+  --normal-space: 10%;
+  --diminuted-space: 7.5vw;
+  --small-space: 5vw;
+  --minor-space: 3.75vw;
+  --text: 1rem;
+
+  --dark-color: #191611;
+  --light-color: #f6efe5;
+  --highlight-color: #ddc060;
+
+  width: 100%;
+}
+
+.PlacarTotal {
+  width: 100%;
+  display: block;
+  padding: 10vw 5vw 5vw 5vw;
+  @media (orientation: portrait) {
+    padding: 8vh 5vw 5vw 5vw;
+  }
+  background-color: var(--light-color);
+}

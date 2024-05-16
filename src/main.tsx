@@ -12,6 +12,7 @@ import ErrorPage from "./routes/ErrorPage.tsx";
 import theme from "./theme.tsx";
 import PlacarIntermediarioProjecao from "./routes/PlacarIntermediario-projecao.tsx";
 import PlacarFinalProjecao from "./routes/PlacarFinal-projecao.tsx";
+import Placar from "./routes/Placar.tsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/PlacarFinal-Projecao",
         element: <PlacarFinalProjecao />,
+      },
+      {
+        path: "/Placar",
+        element: <Placar />,
       },
     ],
   },
