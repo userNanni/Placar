@@ -1,7 +1,11 @@
-# Placa da Olimpíada de História Militar e Aeronáutica
+# Placar da Olimpíada de História Militar e Aeronáutica
 
-Projeto desenvolvido para fornecer uma visualização em tempo real do Placar da Olimpíada e fornecer um ambiente mais competitivo e interessante, tanto aos espectadores quanto para os participantes. O projeto de uma WebApplication foi inciado em 2023, para substituir um sistema em VBA que existia anteriormente.
+Projeto desenvolvido para fornecer uma visualização em tempo real do Placar da Olimpíada e fornecer um ambiente mais competitivo e interessante, tanto aos espectadores quanto para os participantes.
 
+## Histórico do Projeto
+
+O projeto de uma WebApplication foi inciado em 2023, para substituir um sistema em VBA que existia anteriormente. Para isso, com acesso a 0 reais de orçamento, utilizei um banco de dados PocketBase montado por Docker em uma MV em Guarulhos que consegui pela Fly.io. Após isso, montei todo o frontend utilizando React, React Router DOM, Chakra-UI e SASS, o que gerou a página placar Intermediário e placar Final ( Atualmente suas versões de projeção, as quais possui viewport fixado em 1920:1080 para forçar a correta disposição no projetor ), porém tudo rodava apenas em rede local, com porta exposta para visualização do outro na mesa de locução e a própria máquina que executava projetava.
+Em 2024, o projeto foi retormado para a X OHMA, para trazer evoluções na nova edição sendo ela comemorativa do 10 anos de olimpíada, foi idealizado a Introdução de um Wbbsite público e a transmissão em simultâneo ao Vivo. Para isso o WebApp teve seu deploy utilizando o AWS Amplify, vinculado ao GitHub do projeto. Também teve de ser cirada um Landing Page para dar acesso aos placares, foi criado mas não tem link na página inicial o placar total, disponível em "/placar".
 
 # React + TypeScript + Vite
 
@@ -22,12 +26,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
