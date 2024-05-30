@@ -8,7 +8,14 @@ import {
   StatNumber,
 } from "@chakra-ui/react";
 
-function cardIntermediario(props: any) {
+interface participante {
+  Classification: string;
+  Score: number;
+  ImageSrc: string;
+  Name: string;
+}
+
+function cardIntermediario(props: participante) {
   return (
     <Card
       direction={{ base: "column", sm: "row" }}
@@ -19,7 +26,6 @@ function cardIntermediario(props: any) {
       borderRadius={20}
       alignItems="center"
       gridTemplateColumns="1fr 1fr 2fr"
-      key={props.key}
     >
       <CardBody>
         <Stat>

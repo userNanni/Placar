@@ -8,7 +8,14 @@ import {
   StatNumber,
 } from "@chakra-ui/react";
 
-function cardTotal(props: any) {
+interface participante {
+  Classification: string;
+  Score: number;
+  ImageSrc: string;
+  Name: string;
+}
+
+function cardTotal(props: participante) {
   return (
     <Card
       direction={{ base: "column", sm: "row" }}
@@ -20,7 +27,6 @@ function cardTotal(props: any) {
       alignItems="center"
       justifyItems="center"
       gridTemplateColumns="1fr 1fr 2fr 3fr"
-      key={props.key}
     >
       <CardBody>
         <Stat>
@@ -38,7 +44,7 @@ function cardTotal(props: any) {
         height="20vw"
         src={props.ImageSrc}
         alt=""
-      />  
+      />
       <CardHeader fontWeight={700}>{props.Name}</CardHeader>
     </Card>
   );
