@@ -20,8 +20,7 @@ interface participantesTypes {
 
 function PlacarFinalProjecao() {
   const [participantes, setParticipantes] = useState<participantesTypes[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-
+  /* const [loading, setLoading] = useState<boolean>(true);*/
   const fetchData = async () => {
     const apiResponse = await fetch(
       "https://simplyheron.fly.dev/api/collections/participantes/records?sort=-score&&perPage=3"
@@ -33,7 +32,7 @@ function PlacarFinalProjecao() {
 
   useEffect(() => {
     fetchData();
-    setLoading(false);
+    /*     setLoading(false); */
   }, []);
 
   pb.collection("participantes").subscribe("*", function () {

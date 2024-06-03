@@ -1,8 +1,10 @@
-import { Heading, Image } from "@chakra-ui/react";
+import { Heading, Image, Skeleton } from "@chakra-ui/react";
 
 import "./Home.scss";
 import { footer } from "../components/footer.tsx";
 import { header } from "../components/header.tsx";
+
+import { Suspense } from "react";
 
 function Home() {
   return (
@@ -27,11 +29,14 @@ function Home() {
         </div>
       </>
       <section className="about">
-        <Image
-          className="aboutImage"
-          src="https://github.com/userNanni/Placar/blob/2d39c3877b05487770c11fce8c1acf42c8bd6b6e/public/banner-ohma-horizontal.jpeg?raw=true"
-          width={540}
-        ></Image>
+        <Suspense fallback={<Skeleton />}>
+          <Image
+            className="aboutImage"
+            src="https://github.com/userNanni/Placar/blob/2d39c3877b05487770c11fce8c1acf42c8bd6b6e/public/banner-ohma-horizontal.jpeg?raw=true"
+            width={540}
+          ></Image>
+        </Suspense>
+
         <div className="textAbout">
           <p>
             Nos dias 15 e 16 de maio de 2024, a Academia da Força Aérea (AFA)
