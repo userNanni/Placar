@@ -7,7 +7,21 @@ import PocketBase from "pocketbase";
 
 const pb = new PocketBase("https://simplyheron.fly.dev");
 
+interface participantesTypes {
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  id: string;
+  imageSrc: string;
+  name: string;
+  score: number;
+  updated: string;
+}
+
 function PlacarFinalProjecao() {
+  const [participantes, setParticipantes] = useState<participantesTypes[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
   const fetchData = async () => {
     const apiResponse = await fetch(
       "https://simplyheron.fly.dev/api/collections/participantes/records?sort=-score&&perPage=3"
@@ -19,24 +33,12 @@ function PlacarFinalProjecao() {
 
   useEffect(() => {
     fetchData();
+    setLoading(false);
   }, []);
 
   pb.collection("participantes").subscribe("*", function () {
     fetchData();
   });
-
-  const [participantes, setParticipantes] = useState([
-    {
-      collectionId: "58cs73cdsxsyov3",
-      collectionName: "participantes",
-      created: "2024-03-05 20:21:11.372Z",
-      id: "78tcng9e7l1roft",
-      imageSrc: "mascarenhas_zzQC0HKAzk.jpg",
-      name: "Mal. Mascarenhas de Moraes",
-      score: 327,
-      updated: "2023-05-17 20:26:14.325Z",
-    },
-  ]);
 
   return (
     <div className="PlacarProjecao">
@@ -63,12 +65,12 @@ function PlacarFinalProjecao() {
             templateColumns="1fr"
           >
             {participantes.map((participante, ind) => (
-              <Reorder.Item key={participante.id} value={participante.score}>
+              <Reorder.Item key={participante?.id} value={participante?.score}>
                 <CardFinal
                   Classification={ind + 1 + "º"}
-                  ImageSrc={`https://simplyheron.fly.dev/api/files/${participante.collectionId}/${participante.id}/${participante.imageSrc}`}
-                  Name={participante.name}
-                  Score={participante.score}
+                  ImageSrc={`https://simplyheron.fly.dev/api/files/${participante?.collectionId}/${participante?.id}/${participante?.imageSrc}`}
+                  Name={participante?.name}
+                  Score={participante?.score}
                 />
               </Reorder.Item>
             ))}
