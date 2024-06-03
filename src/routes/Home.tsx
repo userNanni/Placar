@@ -27,11 +27,12 @@ function Home() {
         </div>
       </>
       <section className="about">
-        <Image
-          className="aboutImage"
-          src="https://github.com/userNanni/Placar/blob/2d39c3877b05487770c11fce8c1acf42c8bd6b6e/public/banner-ohma-horizontal.jpeg?raw=true"
-          width={540}
-        ></Image>
+
+          <Image
+            className="aboutImage"
+            src="https://github.com/userNanni/Placar/blob/2d39c3877b05487770c11fce8c1acf42c8bd6b6e/public/banner-ohma-horizontal.jpeg?raw=true"
+            width={540}
+          ></Image>
 
         <div className="textAbout">
           <p>
