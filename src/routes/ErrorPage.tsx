@@ -1,7 +1,13 @@
+import { Heading } from "@chakra-ui/react";
+import "./Home.scss";
+
 function ErrorPage() {
   return (
-    <div>Olimpíada de Historia Militar</div>
-  )
+    <div className="errorPage">
+      <Heading>X Olimpíada de Historia Militar</Heading>
+      Desculpe ... ocorreu um erro
+    </div>
+  );
 }
 
 export default ErrorPage;
