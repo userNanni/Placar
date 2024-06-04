@@ -61,6 +61,7 @@ function Placar() {
                 <Reorder.Item
                   key={participante?.id}
                   value={participante?.score}
+                  dragListener={false}
                 >
                   <CardTotal
                     Classification={ind + 1 + "º"}

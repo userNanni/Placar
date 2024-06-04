@@ -64,7 +64,11 @@ function PlacarFinalProjecao() {
             templateColumns="1fr"
           >
             {participantes.map((participante, ind) => (
-              <Reorder.Item key={participante?.id} value={participante?.score}>
+              <Reorder.Item
+                key={participante?.id}
+                value={participante?.score}
+                dragListener={false}
+              >
                 <CardFinal
                   Classification={ind + 1 + "º"}
                   ImageSrc={`https://simplyheron.fly.dev/api/files/${participante?.collectionId}/${participante?.id}/${participante?.imageSrc}`}
