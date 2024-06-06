@@ -10,6 +10,9 @@
   --highlight-color: #ddc060;
 
   font-family: "Grenze Gotisch", serif;
+
+  width: 100%;
+  min-height: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -265,11 +268,6 @@
         font-size: calc(1.5rem + 0.5vw);
         text-align: center;
         align-content: center;
-      }
-
-      .playbtn {
-        width: 4rem;
-        margin-right: 1rem;
       }
     }
     .youtubeBtn:hover {
