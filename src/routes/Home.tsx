@@ -45,15 +45,10 @@ function Home() {
             intercâmbio e a interoperabilidade entre as instituições.
           </p>
           <a
-            href="https://youtube.com/live/phR6a_cFCz0?feature=share"
+            href="/Placar"
             className="youtubeBtn"
           >
-            <img
-              className="playbtn"
-              src="https://github.com/userNanni/Placar/blob/10f62f35e067a4b4558087a1034ce00cbbe5c436/src/assets/play.svg?raw=true"
-              alt=""
-            />
-            <p>Assista ao Vivo</p>
+            <p>Placar Total</p>
           </a>
         </div>
       </section>
