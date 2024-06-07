@@ -43,15 +43,15 @@ function cardTotal(props: participante) {
           </Stat>
         </CardBody>
         <Stat margin={0} padding={0}>
+          <StatNumber fontSize={["xl", "2xl", "3xl", "5xl"]} fontWeight={700}>
+            {props.Score}
+          </StatNumber>
           <StatLabel
             fontSize={["md", "lg", "xl", "2xl", "3xl", "4xl"]}
             fontWeight={500}
           >
-            Pontuação
+            Pontos
           </StatLabel>
-          <StatNumber fontSize={["xl", "2xl", "3xl", "5xl"]} fontWeight={700}>
-            {props.Score}
-          </StatNumber>
         </Stat>
         <AspectRatio
           minW={[50, 100, 150, 200]}
