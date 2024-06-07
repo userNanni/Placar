@@ -4,15 +4,24 @@ import App from "./App.tsx";
 import "./index.css";
 
 import { ChakraProvider } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./routes/Home.tsx";
 import ErrorPage from "./routes/ErrorPage.tsx";
-import theme from "./theme.tsx";
 import PlacarIntermediarioProjecao from "./routes/PlacarIntermediario-projecao.tsx";
 import PlacarFinalProjecao from "./routes/PlacarFinal-projecao.tsx";
 import Placar from "./routes/Placar.tsx";
+
+const theme = extendTheme({
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+  fonts: {
+    heading: `'Grenze Gotisch', serif`,
+    body: `'old-standard-tt', serif`,
+  },
+});
 
 const router = createBrowserRouter([
   {

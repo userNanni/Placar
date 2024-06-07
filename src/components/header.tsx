@@ -2,7 +2,7 @@ import { Heading, Center } from "@chakra-ui/react";
 
 export function header() {
   return (
-    <Center className="header">
+    <Center className="header" w="full">
       <div className="textAndLogo">
         <a className="logoWrap" href="/">
           <img
