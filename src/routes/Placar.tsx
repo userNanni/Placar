@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { Center, SimpleGrid } from "@chakra-ui/react";
 import CardTotal from "../components/cardTotal.tsx";
 import "./Placar.scss";
 import { AnimatePresence, Reorder, motion } from "framer-motion";
@@ -44,7 +44,7 @@ function Placar() {
   return (
     <div>
       {header()}
-      <div className="PlacarTotal">
+      <Center w="full" className="PlacarTotal">
         <AnimatePresence>
           <Reorder.Group
             values={participantes}
@@ -56,6 +56,7 @@ function Placar() {
               spacing={5}
               columns={2}
               templateColumns="1fr"
+              w="full"
             >
               {participantes.map((participante, ind) => (
                 <Reorder.Item
@@ -74,7 +75,7 @@ function Placar() {
             </SimpleGrid>
           </Reorder.Group>
         </AnimatePresence>
-      </div>
+      </Center>
       {footer()}
     </div>
   );
