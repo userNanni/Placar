@@ -2,7 +2,7 @@ import { Heading, Center } from "@chakra-ui/react";
 
 export function header() {
   return (
-    <Center className="header" w="full">
+    <Center className="header">
       <div className="textAndLogo">
         <a className="logoWrap" href="/">
           <img
@@ -11,7 +11,6 @@ export function header() {
             alt="Simbolo OHMA"
           />
         </a>
-
         <div className="titleBackground">
           <Heading className="titleLong">
             X Olímpiada de História Militar Aeronáutica
