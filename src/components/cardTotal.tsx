@@ -6,6 +6,8 @@ import {
   Stat,
   StatLabel,
   StatNumber,
+  AspectRatio,
+  DarkMode,
 } from "@chakra-ui/react";
 
 interface participante {
@@ -17,36 +19,66 @@ interface participante {
 
 function cardTotal(props: participante) {
   return (
-    <Card
-      direction={{ base: "column", sm: "row" }}
-      display="grid"
-      overflow="hidden"
-      variant="outline"
-      padding="10px"
-      borderRadius={20}
-      alignItems="center"
-      justifyItems="center"
-      gridTemplateColumns="1fr 1fr 2fr 3fr"
-    >
-      <CardBody>
-        <Stat>
-          <StatNumber fontWeight={700}>{props.Classification}</StatNumber>
+    <DarkMode>
+      <Card
+        direction={{ base: "column", sm: "row" }}
+        display="grid"
+        overflow="hidden"
+        variant="outline"
+        padding="10px"
+        borderRadius={[10, 20]}
+        textAlign="center"
+        alignItems="center"
+        justifyItems="center"
+        gridTemplateColumns="1fr 1fr 1fr 2.5fr"
+      >
+        <CardBody margin={0} padding={0}>
+          <Stat>
+            <StatNumber
+              fontSize={["2xl", "3xl", "4xl", "6xl"]}
+              fontWeight={700}
+            >
+              {props.Classification}
+            </StatNumber>
+          </Stat>
+        </CardBody>
+        <Stat margin={0} padding={0}>
+          <StatLabel
+            fontSize={["md", "lg", "xl", "2xl", "3xl", "4xl"]}
+            fontWeight={500}
+          >
+            Pontuação
+          </StatLabel>
+          <StatNumber fontSize={["xl", "2xl", "3xl", "5xl"]} fontWeight={700}>
+            {props.Score}
+          </StatNumber>
         </Stat>
-      </CardBody>
-      <Stat margin={5}>
-        <StatLabel fontWeight={500}>Pontuação</StatLabel>
-        <StatNumber fontWeight={700}>{props.Score}</StatNumber>
-      </Stat>
-      <Image
-        objectFit="cover"
-        borderRadius="10px"
-        width="20vw"
-        height="20vw"
-        src={props.ImageSrc}
-        alt=""
-      />
-      <CardHeader fontWeight={700}>{props.Name}</CardHeader>
-    </Card>
+        <AspectRatio
+          minW={[50, 100, 150, 200]}
+          ratio={3 / 4}
+          alignContent="center"
+          margin={0}
+          padding={0}
+        >
+          <Image
+            objectFit="cover"
+            borderRadius="10px"
+            width="20vw"
+            height="20vw"
+            src={props.ImageSrc}
+            alt=""
+          />
+        </AspectRatio>
+        <CardHeader
+          fontSize={["xl", "2xl", "3xl", "5xl"]}
+          fontWeight={700}
+          margin={0}
+          padding={0}
+        >
+          {props.Name}
+        </CardHeader>
+      </Card>
+    </DarkMode>
   );
 }
 
