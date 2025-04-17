@@ -1,0 +1,200 @@
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placar da Olimpíada - História Militar do Brasil</title>
+    <script src="https://unpkg.com/pocketbase@0.19.0/dist/pocketbase.umd.js"></script>
+    <style>
+        /* Estilo Geral */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #0a1931; /* Azul escuro */
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Cabeçalho */
+        header {
+            background: url('https://upload.wikimedia.org/wikipedia/commons/4/44/Batalha_do_Ava%C3%AD.jpg') no-repeat center;
+            background-size: cover;
+            padding: 30px;
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px black;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(15, 76, 129, 0.9); /* Azul escuro translúcido */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 153, 255, 0.4);
+            margin-top: 20px;
+        }
+
+        /* Lista de classificação */
+        .team-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .team {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 15px;
+            margin: 5px 0;
+            background: #144272; /* Azul médio */
+            transition: transform 0.8s ease-in-out, background 0.5s ease-in-out;
+            position: relative;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #ffffff;
+            border: 1px solid #0a95ff; /* Contorno azul claro */
+        }
+
+        .team img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid #ffd700; /* Dourado */
+        }
+
+        .highlight { background: #ffd700 !important; color: #000; } /* Destaque amarelo ouro */
+        .first-place-change { background: #0a95ff !important; } /* Azul claro vibrante */
+        .moving { transition: transform 0.8s ease-in-out; }
+
+        /* Rodapé */
+        footer {
+            background: #081c45;
+            color: #ccc;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .social-icons {
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            color: #0a95ff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 24px;
+        }
+
+        .social-icons a:hover {
+            color: #ffd700; /* Dourado ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Placar da Olimpíada - História Militar do Brasil</h1>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <h2>Classificação</h2>
+        <ul id="ranking" class="team-list"></ul>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Organização Oficial da Competição</p>
+        <div class="social-icons">
+            <a href="https://youtube.com" target="_blank">📺</a>
+            <a href="https://instagram.com" target="_blank">📷</a>
+        </div>
+    </footer>
+
+    <script>
+        const pb = new PocketBase("http://127.0.0.1:8090");
+        let previousFirstPlace = null;
+        let previousPoints = {};
+
+        async function fetchTeams() {
+            try {
+                const response = await pb.collection("placar").getFullList({ sort: "-pontos" });
+
+                let teams = {};
+                response.forEach(record => {
+                    teams[record.equipe] = {
+                        pontos: record.pontos,
+                        imagem: record.imagem ? pb.files.getUrl(record, record.imagem) : "https://via.placeholder.com/50"
+                    };
+                });
+
+                animateRanking(teams);
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+            }
+        }
+
+        function animateRanking(teams) {
+            let ranking = document.getElementById("ranking");
+            let oldOrder = [...ranking.children].map(li => li.dataset.team);
+
+            let sortedTeams = Object.entries(teams).sort((a, b) => b[1].pontos - a[1].pontos);
+            let newFirstPlace = sortedTeams.length > 0 ? sortedTeams[0][0] : null;
+
+            let oldPositions = {};
+            oldOrder.forEach((team, index) => oldPositions[team] = index);
+
+            ranking.innerHTML = "";
+
+            sortedTeams.forEach(([name, data], index) => {
+                let li = document.createElement("li");
+                li.className = "team moving";
+                li.dataset.team = name;
+
+                let img = document.createElement("img");
+                img.src = data.imagem;
+                img.alt = name;
+
+                let text = document.createElement("span");
+                text.textContent = `${index + 1}. ${name} - ${data.pontos} pontos`;
+
+                li.appendChild(img);
+                li.appendChild(text);
+
+                if (name in oldPositions && oldPositions[name] !== index) {
+                    let distance = (oldPositions[name] - index) * 50;
+                    li.style.transform = `translateY(${distance}px)`;
+                    setTimeout(() => { li.style.transform = "translateY(0)"; }, 100);
+                }
+
+                if (previousPoints[name] !== undefined && previousPoints[name] !== data.pontos) {
+                    li.classList.add("highlight");
+                    setTimeout(() => li.classList.remove("highlight"), 1500);
+                }
+
+                if (index === 0 && previousFirstPlace && previousFirstPlace !== newFirstPlace) {
+                    li.classList.add("first-place-change");
+                    setTimeout(() => li.classList.remove("first-place-change"), 2000);
+                }
+
+                ranking.appendChild(li);
+                previousPoints[name] = data.pontos;
+            });
+
+            previousFirstPlace = newFirstPlace;
+        }
+
+        async function subscribeToUpdates() {
+            pb.collection("placar").subscribe("*", () => fetchTeams());
+        }
+
+        fetchTeams();
+        subscribeToUpdates();
+    </script>
+</body>
+</html>
+
+
