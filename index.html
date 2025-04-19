@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placar da Olimpíada - História Militar do Brasil</title>
+    <title>Placar OHMA</title>
     <script src="https://unpkg.com/pocketbase@0.19.0/dist/pocketbase.umd.js"></script>
     <style>
         @keyframes pontuacaoPulse {
@@ -104,7 +104,7 @@
     </style>
 </head>
 <body>
-    <header><h1>Placar da Olimpíada - História Militar do Brasil</h1></header>
+    <header><h1>Placar OHMA - Olimpíada de História Militar da AFA</h1></header>
     <div class="container">
         <h2>Placar</h2>
         <ul id="ranking" class="team-list"></ul>
@@ -117,7 +117,7 @@
         </div>
     </footer>
     <script>
-        const pb = new PocketBase("http://127.0.0.1:8090");
+        const pb = new PocketBase("https://simplyheron.fly.dev");
         let previousFirstPlace = null;
         let previousPoints = {};
         async function fetchTeams() {
@@ -150,6 +150,7 @@
                 let img = document.createElement("img");
                 img.src = data.imagem;
                 img.alt = name;
+                img.onerror = () => { img.src = "https://via.placeholder.com/80"; };
                 let nomeEquipe = document.createElement("span");
                 nomeEquipe.textContent = `${index + 1}. ${name}`;
                 nomeEquipe.style.fontSize = "1.7rem";
@@ -204,3 +205,4 @@
     </script>
 </body>
 </html>
+
