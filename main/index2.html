@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placar OHMA - Atualização Dramática</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/pocketbase@0.19.0/dist/pocketbase.umd.js"></script>
+    <style>
+        /* [Manter todos os estilos anteriores] */
+        
+        .suspense-mode .team {
+            animation: pulse 1s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
+        
+        .points-changing {
+            animation: colorChange 1s infinite alternate;
+        }
+        
+        @keyframes colorChange {
+            0% { color: #8B0000; }
+            100% { color: #d4af37; }
+        }
+    </style>
+</head>
+<body>
+    <!-- [Manter a estrutura HTML anterior] -->
+
+    <script>
+        const pb = new PocketBase("https://simplyheron.fly.dev");
+        let previousFirstPlace = null;
+        let previousPoints = {};
+        let isUpdating = false;
+        
+        async function fetchTeams() {
+            try {
+                const response = await pb.collection("placar").getFullList({ sort: "-pontos" });
+                let teams = {};
+                response.forEach(record => {
+                    teams[record.equipe] = {
+                        pontos: record.pontos,
+                        imagem: record.imagem ? pb.files.getUrl(record, record.imagem) : "https://via.placeholder.com/50"
+                    };
+                });
+                
+                if (!isUpdating) {
+                    updateRankingWithSuspense(teams);
+                }
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+            }
+        }
+        
+        function updateRankingWithSuspense(teams) {
+            isUpdating = true;
+            const ranking = document.getElementById("ranking");
+            const sortedTeams = Object.entries(teams).sort((a, b) => b[1].pontos - a[1].pontos);
+            
+            // 1. Ativar modo suspense
+            ranking.classList.add("suspense-mode");
+            
+            // 2. Animar todos os pontos simultaneamente
+            const allTeams = ranking.querySelectorAll('.team');
+            const animationPromises = [];
+            
+            allTeams.forEach(teamElement => {
+                const teamName = teamElement.dataset.team;
+                const newData = teams[teamName];
+                
+                if (newData && previousPoints[teamName] !== undefined && 
+                    previousPoints[teamName] !== newData.pontos) {
+                    
+                    const pointsElement = teamElement.querySelector('.team-points');
+                    pointsElement.classList.add("points-changing");
+                    
+                    animationPromises.push(new Promise(resolve => {
+                        // Animação de embaralhamento
+                        const duration = 3000; // 3 segundos de suspense
+                        const startTime = Date.now();
+                        const startValue = previousPoints[teamName] || 0;
+                        const endValue = newData.pontos;
+                        
+                        function updatePoints() {
+                            const elapsed = Date.now() - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            if (progress < 1) {
+                                // Fase de embaralhamento aleatório
+                                const randomValue = Math.floor(Math.random() * (endValue + 50));
+                                pointsElement.textContent = `${randomValue} pts`;
+                                requestAnimationFrame(updatePoints);
+                            } else {
+                                // Fase final - mostrar valor correto
+                                pointsElement.textContent = `${endValue} pts`;
+                                pointsElement.classList.remove("points-changing");
+                                pointsElement.classList.add("pontuacao-elastica");
+                                
+                                setTimeout(() => {
+                                    pointsElement.classList.remove("pontuacao-elastica");
+                                    resolve();
+                                }, 500);
+                            }
+                        }
+                        
+                        requestAnimationFrame(updatePoints);
+                    }));
+                }
+            });
+            
+            // 3. Após animação dos pontos, reordenar
+            Promise.all(animationPromises).then(() => {
+                ranking.classList.remove("suspense-mode");
+                
+                // Pequeno delay adicional para suspense
+                setTimeout(() => {
+                    animatePositionChanges(sortedTeams);
+                    isUpdating = false;
+                }, 1000);
+            });
+        }
+        
+        function animatePositionChanges(sortedTeams) {
+            const ranking = document.getElementById("ranking");
+            const oldOrder = [...ranking.children].map(li => li.dataset.team);
+            const newFirstPlace = sortedTeams.length > 0 ? sortedTeams[0][0] : null;
+            const oldPositions = {};
+            
+            oldOrder.forEach((team, index) => oldPositions[team] = index);
+            ranking.innerHTML = "";
+            
+            sortedTeams.forEach(([name, data], newIndex) => {
+                const li = createTeamElement(name, data, newIndex);
+                
+                if (name in oldPositions) {
+                    const oldIndex = oldPositions[name];
+                    if (oldIndex !== newIndex) {
+                        const distance = (oldIndex - newIndex) * 110;
+                        li.style.zIndex = 1000;
+                        li.style.transform = `translateY(${distance}px)`;
+                        
+                        setTimeout(() => {
+                            li.style.transform = "translateY(0)";
+                            li.style.zIndex = 1;
+                        }, 100);
+                    }
+                }
+                
+                if (newIndex === 0 && previousFirstPlace && previousFirstPlace !== newFirstPlace) {
+                    li.classList.add("first-place-change");
+                    setTimeout(() => li.classList.remove("first-place-change"), 2000);
+                }
+                
+                ranking.appendChild(li);
+                previousPoints[name] = data.pontos;
+            });
+            
+            previousFirstPlace = newFirstPlace;
+        }
+        
+        function createTeamElement(name, data, index) {
+            const li = document.createElement("li");
+            li.className = "team";
+            li.dataset.team = name;
+            
+            const img = document.createElement("img");
+            img.src = data.imagem;
+            img.alt = name;
+            img.onerror = () => { img.src = "https://via.placeholder.com/70?text=" + name.charAt(0); };
+            
+            const position = document.createElement("div");
+            position.className = "team-position";
+            position.textContent = `${index + 1}º`;
+            
+            const nameSpan = document.createElement("div");
+            nameSpan.className = "team-name";
+            nameSpan.textContent = name;
+            
+            const points = document.createElement("div");
+            points.className = "team-points";
+            points.textContent = `${data.pontos} pts`;
+            
+            const infoDiv = document.createElement("div");
+            infoDiv.className = "team-info";
+            infoDiv.appendChild(position);
+            infoDiv.appendChild(img);
+            infoDiv.appendChild(nameSpan);
+            
+            const contentDiv = document.createElement("div");
+            contentDiv.className = "team-content";
+            contentDiv.appendChild(infoDiv);
+            contentDiv.appendChild(points);
+            
+            li.appendChild(contentDiv);
+            return li;
+        }
+        
+        async function subscribeToUpdates() {
+            pb.collection("placar").subscribe("*", () => fetchTeams());
+        }
+        
+        fetchTeams();
+        subscribeToUpdates();
+    </script>
+</body>
+</html>

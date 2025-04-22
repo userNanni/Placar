@@ -6,8 +6,8 @@ frontend:
     build:
       commands: []
   artifacts:
-    baseDirectory: .
+    baseDirectory: dist
     files:
-      - index.html
+      - '**/*'
   cache:
     paths: []
