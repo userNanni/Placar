@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Placar OHMA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/pocketbase@0.19.0/dist/pocketbase.umd.js"></script>
     <style>
         @keyframes pontuacaoPulse {
@@ -30,96 +31,261 @@
             perspective: 1000px;
         }
         .pontuacao-animada { animation: pontuacaoPulse 0.6s ease; }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Old Standard TT', serif;
             text-align: center;
-            background: #040e1e;
-            color: #ffffff;
             margin: 0;
             padding: 0;
+            background: url('https://www.transparenttextures.com/patterns/old-paper.png'), #e8dcb8;
+            color: #3a2c0a;
+            min-height: 100vh;
         }
+        
         header {
             background: url('https://upload.wikimedia.org/wikipedia/commons/4/44/Batalha_do_Ava%C3%AD.jpg') no-repeat center;
             background-size: cover;
-            padding: 30px;
+            padding: 40px 20px;
             color: white;
-            font-size: 0px;
-            font-weight: bold;
-            text-shadow: 2px 2px 8px black;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        header h1 {
+            position: relative;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px #000, 0 0 10px #8B4513;
+            letter-spacing: 1px;
+        }
+        
         .container {
             max-width: 800px;
-            margin: auto;
-            background: rgba(114, 69, 5, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 102, 0, 0.809);
-            margin-top: 20px;
+            margin: 30px auto;
+            background: url('https://www.transparenttextures.com/patterns/parchment.png');
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.6);
+            border: 1px solid #8B4513;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/brushed-alum.png');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: #5c3a21;
+            font-size: 2rem;
+            margin-top: 0;
+            border-bottom: 2px solid #8B4513;
+            padding-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        
         .team-list {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
+        
         .team {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding: 8px;
-            margin: 7px 0;
-            background: rgba(248, 248, 248, 0.809);
-            transition: transform 3s ease-in-out, background 3s ease-in-out;
+            justify-content: space-between;
+            padding: 15px 20px;
+            margin: 15px 0;
+            background: rgba(255, 253, 245, 0.8);
+            transition: all 0.5s ease;
             position: relative;
-            z-index: 1;
-            border-radius: 5px;
+            z-index: 1000;
+            border-radius: 3px;
             font-weight: bold;
-            color: #000000;
-            border: 2px solid #000000;
+            color: #3a2c0a;
+            border: 1px solid #c9b18b;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 90px;
         }
+        
+        .team:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .team-content {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .team-info {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        
         .team img {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            margin-right: 15px;
-            margin-left: 50px;
+            margin-right: 25px;
             object-fit: cover;
-            border: 3px solid #000000;
+            border: 3px solid #8B4513;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            background: #fff;
+            flex-shrink: 0;
         }
-        .highlight { background: #aba5a5 !important; color: #000; }
-        .first-place-change { background: #00a714 !important; }
-        .moving { transition: transform 3s ease-in-out; }
+        
+        .team-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #5c3a21;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+            text-align: center;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+        
+        .team-position {
+            font-size: 1.3rem;
+            color: #5c3a21;
+            min-width: 50px;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .team-points {
+            font-family: 'Old Standard TT', serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #8B0000;
+            min-width: 120px;
+           
+            margin-right: 50px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+        
+        .highlight { 
+            background: #e8d9b5 !important; 
+            box-shadow: 0 0 15px rgba(218, 165, 32, 0.6) !important;
+        }
+        
+        .first-place-change { 
+            background: #d4af37 !important;
+            color: #3a2c0a !important;
+        }
+        
+        .moving { 
+            transition: transform 3s ease-in-out;
+            z-index: 1000 !important;
+        }
+        
         footer {
-            background: #000000;
-            color: #ccc;
+            background: #3a2c0a;
+            color: #e8dcb8;
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 40px;
+            font-family: 'Old Standard TT', serif;
+            border-top: 3px solid #8B4513;
         }
-        .social-icons { margin-top: 10px; }
+        
+        .social-icons { 
+            margin-top: 15px;
+        }
+        
         .social-icons a {
-            color: #0a95ff;
+            color: #d4af37;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 15px;
             font-size: 24px;
+            transition: all 0.3s ease;
         }
-        .social-icons a:hover { color: #ffd700; }
+        
+        .social-icons a:hover { 
+            color: #ffd700;
+            transform: scale(1.2);
+        }
+        
+        .team:nth-child(1)::after {
+            content: "🥇";
+            position: absolute;
+            right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .team:nth-child(2)::after {
+            content: "🥈";
+            position: absolute;
+            right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .team:nth-child(3)::after {
+            content: "🥉";
+            position: absolute;
+            right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .container::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('https://www.clipartmax.com/png/middle/85-857577_vector-gold-ornament-divider-golden-flourish.png') no-repeat;
+            background-size: contain;
+            opacity: 0.1;
+            top: 10px;
+            right: 10px;
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
-    <header><h1>Placar OHMA - Olimpíada de História Militar da AFA</h1></header>
+    <header>
+        <h1>Placar OHMA - Olimpíada de História Militar da Aeronáutica</h1>
+    </header>
     <div class="container">
-        <h2>Placar</h2>
+        <h2>Classificação Geral</h2>
         <ul id="ranking" class="team-list"></ul>
     </div>
     <footer>
         <p>Organização Oficial da Competição</p>
         <div class="social-icons">
-            <a href="https://youtube.com" target="_blank">📺</a>
-            <a href="https://instagram.com" target="_blank">📷</a>
+            <a href="https://youtube.com" target="_blank" title="YouTube">📺</a>
+            <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
         </div>
     </footer>
     <script>
         const pb = new PocketBase("https://simplyheron.fly.dev");
+
         let previousFirstPlace = null;
         let previousPoints = {};
+        
         async function fetchTeams() {
             try {
                 const response = await pb.collection("placar").getFullList({ sort: "-pontos" });
@@ -135,6 +301,7 @@
                 console.error("Erro ao buscar dados:", error);
             }
         }
+        
         function animateRanking(teams) {
             let ranking = document.getElementById("ranking");
             let oldOrder = [...ranking.children].map(li => li.dataset.team);
@@ -143,66 +310,90 @@
             let oldPositions = {};
             oldOrder.forEach((team, index) => oldPositions[team] = index);
             ranking.innerHTML = "";
+            
             sortedTeams.forEach(([name, data], index) => {
                 let li = document.createElement("li");
                 li.className = "team moving";
                 li.dataset.team = name;
+                
                 let img = document.createElement("img");
                 img.src = data.imagem;
                 img.alt = name;
-                img.onerror = () => { img.src = "https://via.placeholder.com/80"; };
-                let nomeEquipe = document.createElement("span");
-                nomeEquipe.textContent = `${index + 1}. ${name}`;
-                nomeEquipe.style.fontSize = "1.7rem";
-                nomeEquipe.style.marginRight = "auto";
-                let pontuacao = document.createElement("span");
-                pontuacao.textContent = `${data.pontos} pts`;
-                pontuacao.style.fontSize = "2rem";
-                pontuacao.style.fontWeight = "bold";
-                pontuacao.style.color = "#ff0000";
-                pontuacao.style.marginRight = "20px";
-                li.appendChild(img);
-                li.appendChild(nomeEquipe);
-                li.appendChild(pontuacao);
+                img.onerror = () => { img.src = "https://via.placeholder.com/70?text=" + name.charAt(0); };
+                
+                let position = document.createElement("div");
+                position.className = "team-position";
+                position.textContent = `${index + 1}º`;
+                
+                let nameSpan = document.createElement("div");
+                nameSpan.className = "team-name";
+                nameSpan.textContent = name;
+                
+                let points = document.createElement("div");
+                points.className = "team-points";
+                points.textContent = `${data.pontos} pts`;
+                
+                let infoDiv = document.createElement("div");
+                infoDiv.className = "team-info";
+                infoDiv.appendChild(position);
+                infoDiv.appendChild(img);
+                infoDiv.appendChild(nameSpan);
+                
+                let contentDiv = document.createElement("div");
+                contentDiv.className = "team-content";
+                contentDiv.appendChild(infoDiv);
+                contentDiv.appendChild(points);
+                
+                li.appendChild(contentDiv);
+                
                 if (name in oldPositions && oldPositions[name] !== index) {
-                    let distance = (oldPositions[name] - index) * 95;
-                    li.style.zIndex = 10;
+                    let distance = (oldPositions[name] - index) * 110;
+                    li.style.zIndex = 1000;
                     li.style.transform = `translateY(${distance}px)`;
-                    setTimeout(() => { li.style.transform = "translateY(0)"; li.style.zIndex = 1; }, 100);
+                    setTimeout(() => { 
+                        li.style.transform = "translateY(0)"; 
+                        li.style.zIndex = 1; 
+                    }, 100);
                 }
+                
                 if (previousPoints[name] !== undefined && previousPoints[name] !== data.pontos) {
                     li.classList.add("highlight");
                     let atual = 0;
                     let final = data.pontos;
                     let embaralhador = setInterval(() => {
                         atual = Math.floor(Math.random() * 100);
-                        pontuacao.textContent = `${atual} pts`;
+                        points.textContent = `${atual} pts`;
                     }, 60);
+                    
                     setTimeout(() => {
                         clearInterval(embaralhador);
-                        pontuacao.textContent = `${final} pts`;
-                        pontuacao.classList.add("pontuacao-elastica");
+                        points.textContent = `${final} pts`;
+                        points.classList.add("pontuacao-elastica");
                         setTimeout(() => {
-                            pontuacao.classList.remove("pontuacao-elastica");
+                            points.classList.remove("pontuacao-elastica");
                             li.classList.remove("highlight");
                         }, 500);
                     }, 3000);
                 }
+                
                 if (index === 0 && previousFirstPlace && previousFirstPlace !== newFirstPlace) {
                     li.classList.add("first-place-change");
                     setTimeout(() => li.classList.remove("first-place-change"), 2000);
                 }
+                
                 ranking.appendChild(li);
                 previousPoints[name] = data.pontos;
             });
+            
             previousFirstPlace = newFirstPlace;
         }
+        
         async function subscribeToUpdates() {
             pb.collection("placar").subscribe("*", () => fetchTeams());
         }
+        
         fetchTeams();
         subscribeToUpdates();
     </script>
 </body>
 </html>
-
