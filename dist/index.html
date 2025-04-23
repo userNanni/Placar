@@ -37,19 +37,14 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            background: url('https://www.transparenttextures.com/patterns/old-paper.png'), #e8dcb8;
+            background:#394059;
             color: #3a2c0a;
             min-height: 100vh;
         }
         
         header {
-            background: url('https://upload.wikimedia.org/wikipedia/commons/4/44/Batalha_do_Ava%C3%AD.jpg') no-repeat center;
-            background-size: cover;
-            padding: 40px 20px;
-            color: white;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
+    display: none;
+}
         
         header::before {
             content: "";
@@ -67,17 +62,16 @@
             font-family: 'Cinzel', serif;
             font-size: 2.5rem;
             margin: -10;
-            text-shadow: 2px 2px 4px #000, 0 0 10px #8B4513;
+            text-shadow: 2px 15px 7px #000, 0 0 10px #8B4513;
             letter-spacing: 1px;
         }
         
         .container {
             max-width: 800px;
             margin: 30px auto;
-            background: url('https://www.transparenttextures.com/patterns/parchment.png');
-            padding: 30px;
+           
             border-radius: 5px;
-            box-shadow: 0 0 20px rgba(139, 69, 19, 0.6);
+            box-shadow: 0 0 50px rgba(139, 69, 19, 0.6);
             border: 1px solid #8B4513;
             position: relative;
             overflow: hidden;
@@ -150,8 +144,8 @@
         }
         
         .team img {
-            width: 70px;
-            height: 70px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             margin-right: 25px;
             object-fit: cover;
@@ -160,6 +154,32 @@
             background: #fff;
             flex-shrink: 0;
         }
+        .team-brasao {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    object-fit: contain;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    display: block;
+    padding: 0;
+    margin: 0 0 0 15px;
+}
+
+.team img.team-main {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 25px;
+    object-fit: cover;
+    border: 3px solid #8B4513;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background: #fff;
+    flex-shrink: 0;
+}
         
         .team-name {
             font-family: 'Cinzel', serif;
@@ -271,16 +291,10 @@
         <h1>Placar OHMA - Olimpíada de História Militar Aeronáutica</h1>
     </header>
     <div class="container">
-        <h2>Classificação Geral</h2>
+        
         <ul id="ranking" class="team-list"></ul>
     </div>
-    <footer>
-        <p>Organização Oficial da Competição</p>
-        <div class="social-icons">
-            <a href="https://youtube.com" target="_blank" title="YouTube">📺</a>
-            <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
-        </div>
-    </footer>
+  
     <script>
         const pb = new PocketBase("https://simplyheron.fly.dev");
 
@@ -288,20 +302,21 @@
         let previousPoints = {};
         
         async function fetchTeams() {
-            try {
-                const response = await pb.collection("placar").getFullList({ sort: "-pontos" });
-                let teams = {};
-                response.forEach(record => {
-                    teams[record.equipe] = {
-                        pontos: record.pontos,
-                        imagem: record.imagem ? pb.files.getUrl(record, record.imagem) : "https://via.placeholder.com/50"
-                    };
-                });
-                animateRanking(teams);
-            } catch (error) {
-                console.error("Erro ao buscar dados:", error);
-            }
-        }
+    try {
+        const response = await pb.collection("placar").getFullList({ sort: "-pontos" });
+        let teams = {};
+        response.forEach(record => {
+            teams[record.equipe] = {
+                pontos: record.pontos,
+                imagem: record.imagem ? pb.files.getUrl(record, record.imagem) : "https://via.placeholder.com/50",
+                brasao: record.imagem2 ? pb.files.getUrl(record, record.imagem2) : "https://via.placeholder.com/50" // Brasão da equipe
+            };
+        });
+        animateRanking(teams);
+    } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+    }
+}
         
         function animateRanking(teams) {
             let ranking = document.getElementById("ranking");
@@ -320,8 +335,17 @@
                 let img = document.createElement("img");
                 img.src = data.imagem;
                 img.alt = name;
+                img.className = "team-main";
                 img.onerror = () => { img.src = "https://via.placeholder.com/70?text=" + name.charAt(0); };
                 
+                // Criar a imagem do brasão
+                let brasao = document.createElement("img");
+brasao.src = data.brasao;
+brasao.alt = `${name} brasão`;
+brasao.className = "team-brasao";
+brasao.style.display = "block";  // Adicione esta linha
+brasao.style.margin = "0 0 0 15px";  // E esta linha
+        
                 let position = document.createElement("div");
                 position.className = "team-position";
                 position.textContent = `${index + 1}º`;
@@ -339,7 +363,8 @@
                 infoDiv.appendChild(position);
                 infoDiv.appendChild(img);
                 infoDiv.appendChild(nameSpan);
-                
+                infoDiv.appendChild(brasao); // Adiciona o brasão ao lado da imagem
+            
                 let contentDiv = document.createElement("div");
                 contentDiv.className = "team-content";
                 contentDiv.appendChild(infoDiv);
