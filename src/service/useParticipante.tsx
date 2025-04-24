@@ -1,4 +1,3 @@
-// src/hooks/useParticipantes.ts
 import { useEffect, useState } from "react";
 import { Participante } from "../domain/models.tsx";
 import { PocketBaseService } from "../service/pocketBase.tsx";

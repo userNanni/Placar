@@ -8,3 +8,10 @@ export interface Participante {
     score: number;
     updated: string;
 }
+
+export interface participanteCardProps {
+  Classification: string;
+  Score: number;
+  ImageSrc: string;
+  Name: string;
+}

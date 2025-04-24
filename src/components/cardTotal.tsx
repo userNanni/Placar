@@ -10,14 +10,9 @@ import {
   DarkMode,
 } from "@chakra-ui/react";
 
-interface participante {
-  Classification: string;
-  Score: number;
-  ImageSrc: string;
-  Name: string;
-}
+import { participanteCardProps } from "../domain/models.tsx";
 
-function cardTotal(props: participante) {
+function cardTotal(props: participanteCardProps) {
   return (
     <DarkMode>
       <Card

@@ -7,14 +7,11 @@ import { useParticipantes } from "../service/useParticipante.tsx";
 import { Participante } from "../domain/models.tsx";
 
 function PlacarIntermediarioProjecao() {
-  const { participantes: fetchedParticipantes } = useParticipantes();
-  const [participantes, setParticipantes] = useState<Participante[]>([]);
-  console.log("PlacarIntermediarioProjecao");
-  console.log(fetchedParticipantes);
   
+  const { participantes: fetchedParticipantes } = useParticipantes();
+  const [participantes, setParticipantes] = useState<Participante[]>([]);  
   
   useEffect(() => setParticipantes(fetchedParticipantes),[fetchedParticipantes]);
-  console.log(participantes);
   
   return (
     <div className="PlacarProjecao">

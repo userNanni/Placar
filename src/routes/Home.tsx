@@ -3,6 +3,7 @@ import { Heading, Image } from "@chakra-ui/react";
 import "./Home.scss";
 import { footer } from "../components/footer.tsx";
 import { header } from "../components/header.tsx";
+import { text } from "../content/text.tsx";
 
 function Home() {
   return (
@@ -36,13 +37,7 @@ function Home() {
 
         <div className="textAbout">
           <p>
-            Nos dias 15 e 16 de maio de 2024, a Academia da Força Aérea (AFA)
-            sediará a X Olimpíada de História Militar e Aeronáutica. Mais do que
-            uma competição, a Olimpíada visa estimular o estudo e a pesquisa
-            nessas áreas, reconhecendo sua importância na formação de futuros
-            oficiais da Força Aérea Brasileira. O evento conta com a
-            participação de equipes de outras escolas militares, promovendo o
-            intercâmbio e a interoperabilidade entre as instituições.
+            {text.about}
           </p>
           <a
             href="/Placar"

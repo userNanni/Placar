@@ -8,6 +8,7 @@ import { useParticipantes } from "../service/useParticipante.tsx";
 import { Participante } from "../domain/models.tsx";
 
 function PlacarFinalProjecao() {
+  
   const { participantes: fetchedParticipantes } = useParticipantes();
   const [participantes, setParticipantes] = useState<Participante[]>([]);
 

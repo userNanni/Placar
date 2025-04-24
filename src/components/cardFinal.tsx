@@ -8,14 +8,9 @@ import {
   StatNumber,
 } from "@chakra-ui/react";
 
-interface participante {
-  Classification: string;
-  Score: number;
-  ImageSrc: string;
-  Name: string;
-}
+import { participanteCardProps } from "../domain/models.tsx";
 
-function cardFinal(props: participante) {
+function cardFinal(props: participanteCardProps) {
   return (
     <Card
       direction={{ base: "column", sm: "row" }}

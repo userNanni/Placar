@@ -10,6 +10,7 @@ import { useParticipantes } from "../service/useParticipante.tsx";
 import { Participante } from "../domain/models.tsx";
 
 function Placar() {
+  
   const { participantes: fetchedParticipantes } = useParticipantes();
   const [participantes, setParticipantes] = useState<Participante[]>([]);
 

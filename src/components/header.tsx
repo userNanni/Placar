@@ -1,4 +1,5 @@
 import { Heading, Center } from "@chakra-ui/react";
+import {text} from "../content/text.tsx";
 
 export function header() {
   return (
@@ -13,7 +14,7 @@ export function header() {
         </a>
         <div className="titleBackground">
           <Heading className="titleLong">
-            X Olímpiada de História Militar Aeronáutica
+            {text.title}
           </Heading>
           <Heading className="titleShort">X OHMA</Heading>
         </div>
